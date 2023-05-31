@@ -15,23 +15,7 @@ const ImageUploader = () => {
     setImages(imagesArray);
     
   };
-  // const handleUpload=()=>{
-   
-  //   console.log(imagesArray)
-  //   console.log(images)
-
-  //   imagesArray.forEach((image) => {
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       const link = document.createElement('a');
-  //       link.href = e.target.result;
-  //       link.download = image.name;
-  //       link.click();
-  //     };
-  //     reader.readAsDataURL(image);
-  //   });
-
-  // }
+  
   const handleUpload = async () => {
     const formData = new FormData();
     images.forEach((image) => {
@@ -41,6 +25,16 @@ const ImageUploader = () => {
     try {
       const response = await axios.post('http://localhost:3001/upload', formData);
       console.log('Images uploaded:', response.data);
+      imagesArray.forEach((image) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const link = document.createElement('a');
+        link.href = e.target.result;
+        link.download = image.name;
+        link.click();
+      };
+      reader.readAsDataURL(image);
+    });
     } catch (error) {
       console.error('Error uploading images:', error);
     }
