@@ -4,7 +4,13 @@
 /node_modules
 /.pnp
 .pnp.js
+
+
+# Ignore config.js file
 config.js
+
+# Ignore config directory
+config/
 
 # testing
 /coverage
